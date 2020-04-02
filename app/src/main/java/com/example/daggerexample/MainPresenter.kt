@@ -10,13 +10,6 @@ import javax.inject.Inject
 @ActivityScope
 class MainPresenter @Inject constructor(application: Application) : MainPresenterInterface {
 
-    init {
-        DaggerActivityComponent.builder()
-            .appComponent((application as App).appComponent)
-            .build()
-            .inject(this)
-    }
-
     override fun func() {
         Log.i("Presenter", "Hey!")
     }

@@ -8,13 +8,15 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     @Inject
-    lateinit var presenter: MainPresenter
+    lateinit var presenter: MainPresenterInterface
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         getActivityComponent().inject(this)
+
+        presenter.func()
     }
 
     private fun getAppComponent(): AppComponent =
@@ -25,5 +27,6 @@ class MainActivity : AppCompatActivity() {
     private fun getActivityComponent(): ActivityComponent =
         DaggerActivityComponent.builder()
             .appComponent((applicationContext as App).appComponent)
+            .activityModule(ActivityModule(this))
             .build()
 }
