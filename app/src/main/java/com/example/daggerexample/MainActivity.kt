@@ -11,6 +11,7 @@ import com.example.daggerexample.di.DaggerAppComponent
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
+    
     @Inject
     lateinit var appContext: Application
 
@@ -19,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         getAppComponent().inject(this)
-        Log.i("bruh", ::appContext.isInitialized.toString())
     }
 
     private fun getAppComponent(): AppComponent =
