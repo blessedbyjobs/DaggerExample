@@ -5,13 +5,11 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import com.example.daggerexample.di.AppComponent
-import com.example.daggerexample.di.AppModule
-import com.example.daggerexample.di.DaggerAppComponent
+import com.example.daggerexample.di.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
-    
+
     @Inject
     lateinit var appContext: Application
 
@@ -19,11 +17,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        getAppComponent().inject(this)
+        getActivityComponent().inject(this)
     }
 
     private fun getAppComponent(): AppComponent =
         DaggerAppComponent.builder()
-        .appModule(AppModule(application))
-        .build()
+            .appModule(AppModule(application))
+            .build()
+
+    private fun getActivityComponent(): ActivityComponent =
+        DaggerActivityComponent.builder().appComponent((applicationContext as App).appComponent).build()
 }
