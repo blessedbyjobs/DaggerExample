@@ -1,6 +1,7 @@
 package com.example.daggerexample.di
 
 import com.example.daggerexample.MainActivity
+import com.example.daggerexample.MainPresenter
 import dagger.Component
 import javax.inject.Scope
 
@@ -13,4 +14,6 @@ annotation class ActivityScope
 interface ActivityComponent {
 
     fun inject(activity: MainActivity)
+
+    fun inject(presenter: MainPresenter)
 }

@@ -8,5 +8,6 @@ import dagger.Provides
 class ActivityModule(private var activity: MainActivity) {
 
     @Provides
+    @ActivityScope
     fun providesActivity(): MainActivity = activity
 }
